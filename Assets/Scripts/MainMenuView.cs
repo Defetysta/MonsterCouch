@@ -1,8 +1,11 @@
-using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class MainMenuView : MonoBehaviour
 {
+    [SerializeField] 
+    private string levelSceneName;
+    
     [SerializeField] 
     private Button playGameButton;
     [SerializeField] 
@@ -35,7 +38,7 @@ public class MainMenuView : MonoBehaviour
 
     private void MainMenuButtonClicked()
     {
-        throw new NotImplementedException();
+        SceneManager.LoadScene(levelSceneName);
     }
 
     private void SettingsButtonClicked()
