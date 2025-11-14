@@ -344,6 +344,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   moveSpeed: 100
+  interactableTagName: Interactable
 --- !u!50 &59257155
 Rigidbody2D:
   serializedVersion: 5
@@ -642,34 +643,6 @@ PrefabInstance:
     - target: {fileID: 1963523404657351996, guid: f45e4ed34bb28b14aa2d16d9d16d3a64, type: 3}
       propertyPath: m_IsActive
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3363174157732448279, guid: f45e4ed34bb28b14aa2d16d9d16d3a64, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -1.0425
-      objectReference: {fileID: 0}
-    - target: {fileID: 3363174157732448279, guid: f45e4ed34bb28b14aa2d16d9d16d3a64, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.3759
-      objectReference: {fileID: 0}
-    - target: {fileID: 3363174157732448279, guid: f45e4ed34bb28b14aa2d16d9d16d3a64, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3363174157732448279, guid: f45e4ed34bb28b14aa2d16d9d16d3a64, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3363174157732448279, guid: f45e4ed34bb28b14aa2d16d9d16d3a64, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3363174157732448279, guid: f45e4ed34bb28b14aa2d16d9d16d3a64, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3363174157732448279, guid: f45e4ed34bb28b14aa2d16d9d16d3a64, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3363174157732448279, guid: f45e4ed34bb28b14aa2d16d9d16d3a64, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
