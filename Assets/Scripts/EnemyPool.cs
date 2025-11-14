@@ -15,13 +15,11 @@ public class EnemyPool : MonoBehaviour
     [SerializeField]
     private Vector2 areaVerticalConstraints;
     
-    private Sprite defaultSprite;
-    private IObjectPool<SpriteRenderer> pool;
+    private IObjectPool<GameObject> pool;
 
     private void Awake()
     {
-        defaultSprite = defaultEnemyPrefab.GetComponent<SpriteRenderer>().sprite;
-        pool = new ObjectPool<SpriteRenderer>(
+        pool = new ObjectPool<GameObject>(
             createFunc: CreateItem,
             actionOnGet: OnGet,
             actionOnRelease: OnRelease,
@@ -32,11 +30,11 @@ public class EnemyPool : MonoBehaviour
 
         for (int i = 0; i < numberOfEnemiesToSpawn; i++)
         {
-            SpriteRenderer spriteRenderer = pool.Get();
+            GameObject newEnemyObject = pool.Get();
             Vector2 randomPosition = new Vector2(
                 Random.Range(areaHorizontalConstraints.x, areaHorizontalConstraints.y), 
                 Random.Range(areaVerticalConstraints.x, areaVerticalConstraints.y));
-            spriteRenderer.transform.position = randomPosition;
+            newEnemyObject.transform.position = randomPosition;
         }
     }
     
@@ -53,30 +51,27 @@ public class EnemyPool : MonoBehaviour
     // }
 
     
-    private SpriteRenderer CreateItem()
+    private GameObject CreateItem()
     {
-        GameObject newGameObject = new GameObject();
-        newGameObject.transform.SetParent(transform);
+        GameObject newGameObject = Instantiate(defaultEnemyPrefab, transform, true);
         newGameObject.transform.localScale = defaultEnemyScale;
         newGameObject.name = $"{"PooledCube" + newGameObject.gameObject.transform.GetSiblingIndex()}";
-        var spawnedSpriteRenderer = newGameObject.AddComponent<SpriteRenderer>();
-        spawnedSpriteRenderer.sprite = defaultSprite;
         newGameObject.SetActive(false);
-        return spawnedSpriteRenderer;
+        return newGameObject;
     }
 
-    private void OnGet(SpriteRenderer pooledSpriteRenderer)
+    private void OnGet(GameObject pooledGameObject)
     {
-        pooledSpriteRenderer.gameObject.SetActive(true);
+        pooledGameObject.SetActive(true);
     }
 
-    private void OnRelease(SpriteRenderer pooledSpriteRenderer)
+    private void OnRelease(GameObject pooledGameObject)
     {
-        pooledSpriteRenderer.gameObject.SetActive(false);
+        pooledGameObject.SetActive(false);
     }
 
-    private void OnDestroyItem(SpriteRenderer pooledSpriteRenderer)
+    private void OnDestroyItem(GameObject pooledGameObject)
     {
-        Destroy(pooledSpriteRenderer.gameObject);
+        Destroy(pooledGameObject);
     }
 }
