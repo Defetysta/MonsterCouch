@@ -5,20 +5,23 @@ public class EnemyBehaviour : MonoBehaviour
 {
     [SerializeField]
     private float enemyMoveSpeed;
-
     [SerializeField] 
     private float changeDirectionSeconds;
+    [SerializeField] 
+    private float fleeingDistance;
     
     private Vector2 areaHorizontalConstraints;
     private Vector2 areaVerticalConstraints;
     private bool isCaught;
     private bool isFleeing;
+    private Transform playerTransform;
 
     private Vector3 randomDirection;
     private float directionRandomizationCountdown;
     
-    public void Init(Vector2 areaHorizontalConstraints, Vector2 areaVerticalConstraints)
+    public void Init(Transform playerTransform, Vector2 areaHorizontalConstraints, Vector2 areaVerticalConstraints)
     {
+        this.playerTransform = playerTransform;
         this.areaHorizontalConstraints = areaHorizontalConstraints;
         this.areaVerticalConstraints = areaVerticalConstraints;
 
@@ -42,6 +45,9 @@ public class EnemyBehaviour : MonoBehaviour
         {
             return;
         }
+
+        bool shouldBeFleeing = Vector2.Distance(playerTransform.position, transform.position) <= fleeingDistance;
+        SetIsFleeingState(shouldBeFleeing);
 
         if (isFleeing == true)
         {
@@ -77,7 +83,9 @@ public class EnemyBehaviour : MonoBehaviour
     
     private void FleeAway()
     {
-        throw new System.NotImplementedException();
+        Vector3 newPosition = (transform.position - playerTransform.position).normalized *
+                              (enemyMoveSpeed * Time.fixedDeltaTime);
+        transform.position += newPosition;
     }
 
     public void SetGetCaughtState(bool desiredState)

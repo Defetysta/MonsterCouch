@@ -5,6 +5,8 @@ using Random = UnityEngine.Random;
 public class EnemyPool : MonoBehaviour
 {
     [SerializeField]
+    private Transform playerTransform;
+    [SerializeField]
     private GameObject defaultEnemyPrefab;
     [SerializeField]
     private int numberOfEnemiesToSpawn;
@@ -57,7 +59,10 @@ public class EnemyPool : MonoBehaviour
         newGameObject.SetActive(false);
         newGameObject.transform.localScale = defaultEnemyScale;
         newGameObject.name = $"{"PooledCube" + newGameObject.gameObject.transform.GetSiblingIndex()}";
-        newGameObject.GetComponent<EnemyBehaviour>().Init(areaHorizontalConstraints, areaVerticalConstraints);
+        newGameObject.GetComponent<EnemyBehaviour>().Init(
+            playerTransform, 
+            areaHorizontalConstraints, 
+            areaVerticalConstraints);
         
         return newGameObject;
     }

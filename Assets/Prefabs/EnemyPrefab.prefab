@@ -46,8 +46,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af030f2e9f2e3a54384185b404637059, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyBehaviour
-  enemyMoveSpeed: 1
+  enemyMoveSpeed: 0.8
   changeDirectionSeconds: 1
+  fleeingDistance: 2
 --- !u!58 &3922972102539236421
 CircleCollider2D:
   m_ObjectHideFlags: 0

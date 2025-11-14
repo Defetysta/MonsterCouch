@@ -623,6 +623,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c30412fa7c9009f4da0f4ffc9625ffa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyPool
+  playerTransform: {fileID: 59257151}
   defaultEnemyPrefab: {fileID: 1966728452}
   numberOfEnemiesToSpawn: 1000
   defaultEnemyScale: {x: 0.2, y: 0.2, z: 0.2}
