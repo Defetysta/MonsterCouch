@@ -54,9 +54,11 @@ public class EnemyPool : MonoBehaviour
     private GameObject CreateItem()
     {
         GameObject newGameObject = Instantiate(defaultEnemyPrefab, transform, true);
+        newGameObject.SetActive(false);
         newGameObject.transform.localScale = defaultEnemyScale;
         newGameObject.name = $"{"PooledCube" + newGameObject.gameObject.transform.GetSiblingIndex()}";
-        newGameObject.SetActive(false);
+        newGameObject.GetComponent<EnemyBehaviour>().Init(areaHorizontalConstraints, areaVerticalConstraints);
+        
         return newGameObject;
     }
 
